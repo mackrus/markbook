@@ -2,13 +2,38 @@
 <html>
 <head>
     <title>Calendar</title>
-    <link rel="stylesheet" filename='./calendar.css'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='calendar.css'>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+          initialView: 'timeGridWeek',
+          height: 800,
+          aspectRatio: 2.5,
+            headerToolbar: {
+            left: 'prev,next',
+            center: 'today',
+            right: 'timeGridWeek,timeGridDay' // user can switch between the two
+          },
+
+          // Function for users to add events
+          dateClick: function(info) {
+            var title = prompt('Enter shift location');
+            if (title){
+              calendar.addEvent({
+                title: title,
+                start: info.date,
+                end: info.date,
+              });
+            }
+          },
+          // Function for users to edit events
+          eventClick: function(info) {
+            info.event.setProp('title', 'New user title');
+          }
         });
         calendar.render();
       });
