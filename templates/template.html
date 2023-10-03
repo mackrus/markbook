@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='calendar.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js"></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
+</head>
+<body>
+    <div class="calendar">
+        <!-- Calendar content goes here -->
+        {% for event in events %}
+            <div class="event">
+                {{ event.date }}: {{ event.title }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+
+</html>

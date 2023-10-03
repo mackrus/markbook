@@ -1,4 +1,7 @@
 from flask import Flask
+from flask import render_template
+
+import time
 
 
 app = Flask(__name__)
@@ -12,7 +15,10 @@ class calendarBooker:
     def hello(msg):
         return msg
     
-    
+    def calendar():
+        
+        # Put functionality in here when needed
+        return render_template('./template.html')
 
 
 if __name__ == '__main__':
